@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Fasting_Plan
 # Create your views here.
-def my_blog(request):
-    return HttpResponse("Welcome to my blog!")
+class FastingPlanListView(generic.ListView):
+
+    queryset = Fasting_Plan.objects.all()
+    template_name = 'fastblog/fast_list.html' 
+    
