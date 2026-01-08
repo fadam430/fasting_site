@@ -1,11 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Home</title>
-</head>
-<body>
-  <h1>Welcome to the site</h1>
-  <p><a href="{% url 'fasting_list' %}">View fasting plans</a></p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Adam fasting site{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    <div class="container">
+      <h1 class="display-4">Welcome to Adam fasting site</h1>
+      <p class="lead">Explore fasting plans, learn about the practice, and find a plan that fits your lifestyle.</p>
+    </div>
+  </div>
+
+  <section class="articles mt-4">
+    <div class="row g-3">
+      <article class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">What is fasting?</h5>
+            <p class="card-text">Fasting is the voluntary abstention from some or all food and drink for a set period. It can be used for health, spiritual, or medical reasons. Common approaches include time-restricted eating and multi-day fasts.</p>
+            <p class="small text-muted">Estimated read: 2 min</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Why we use it?</h5>
+            <p class="card-text">People fast for many reasons: weight management, improved metabolic health, mental clarity, or spiritual practice. Scientific studies show benefits for insulin sensitivity and cellular maintenance when practiced safely.</p>
+            <p class="small text-muted">Estimated read: 2 min</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">History of fasting</h5>
+            <p class="card-text">Fasting has ancient roots across cultures and religions — from Ramadan in Islam to Lent in Christianity and meditation traditions in Asia. Historically it was practiced for spiritual purification and healing.</p>
+            <p class="small text-muted">Estimated read: 3 min</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+{% endblock %}
