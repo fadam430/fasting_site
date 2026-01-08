@@ -17,6 +17,14 @@ html,body{height:100%;margin:0;font-family:var(--font);color:var(--accent);backg
 .nav-link{color:var(--accent) !important}
 .nav-link:hover{color:var(--brand) !important;background:transparent}
 
+/* Active nav link styling — visible and clean */
+.nav-link.active{
+    background:var(--brand) !important;
+    color:#ffffff !important;
+    padding:0.4rem 0.7rem;
+    border-radius:6px;
+}
+
 .site-main{padding:1rem 0.5rem}
 
 .site-footer{background:var(--bg);border-top:1px solid rgba(0,0,0,0.06);padding:1rem 0;margin-top:2rem}
