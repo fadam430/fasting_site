@@ -2,6 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 
 
+class ReviewForm(forms.Form):
+    rating = forms.IntegerField(min_value=1, max_value=5, label='Rating')
+    comment = forms.CharField(widget=forms.Textarea(attrs={'rows':3}), required=False, label='Comment')
+
+
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, min_length=8, label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput, label='Confirm password')

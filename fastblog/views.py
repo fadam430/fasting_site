@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 # type: ignore
 from django.views import generic # type: ignore
-from django.http import HttpResponseNotAllowed
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
-from django.contrib.auth.models import User
+from django.http import HttpResponseNotAllowed # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
+from django.contrib.auth import login # type: ignore
+from django.contrib.auth.models import User # type: ignore
 from .models import Fasting_Plan, Reviews
 from .forms import RegistrationForm
+from .forms import ReviewForm
+from django.http import HttpResponseForbidden
 
 # Create your views here.
 def home(request):
@@ -63,3 +65,33 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(request, 'fastblog/register.html', {'form': form})
+
+
+@login_required
+def edit_review(request, pk):
+    review = get_object_or_404(Reviews, pk=pk)
+    if not (request.user == review.reviewer or request.user.is_staff):
+        return HttpResponseForbidden('Not allowed')
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review.rating = form.cleaned_data['rating']
+            review.comment = form.cleaned_data['comment']
+            review.save()
+            return redirect('fasting_list')
+    else:
+        form = ReviewForm(initial={'rating': review.rating, 'comment': review.comment})
+
+    return render(request, 'fastblog/review_edit.html', {'form': form, 'review': review})
+
+
+@login_required
+def delete_review(request, pk):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+    review = get_object_or_404(Reviews, pk=pk)
+    if not (request.user == review.reviewer or request.user.is_staff):
+        return HttpResponseForbidden('Not allowed')
+    review.delete()
+    return redirect('fasting_list')
