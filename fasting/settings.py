@@ -63,6 +63,9 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_UNIQUE_EMAIL = False
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+# Redirect to site home after logout
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'home'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
