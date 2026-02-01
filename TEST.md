@@ -33,3 +33,11 @@ Notes
 
 - Tests run with Django's test runner and use the test database; migrations are applied automatically for the test run.
 - If you want these tests to run on CI, I can add a GitHub Actions workflow to run them on every push.
+
+Validation note
+
+- I ran the site source through the W3C validator at https://validator.w3.org/ and received **4 warnings** about inappropriate heading use (multiple H1s / heading order). The warnings point to `templates/fastblog/home.html` where the hero uses an H1 and the three article card titles were also H1s.
+
+- Recommendation: keep a single main H1 (the hero heading) and change the card headings to semantic levels (e.g., `<h2 class="card-title h5">` or `<h3 class="card-title h5">`) or wrap each card in its own section/article element to establish a proper heading outline. After adjusting headings, re-run the validator to confirm warnings are resolved.
+
+- Note: these are accessibility/markup warnings (not test failures); unit tests remain unchanged.
