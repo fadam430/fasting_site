@@ -22,6 +22,10 @@ from fastblog import views as fastblog_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', fastblog_views.home, name='home'),
+
+    # django-allauth (accounts)
+    path('accounts/', include('allauth.urls')),
+
     path('about/', include('about.urls')),
     path('fasting/', include('fastblog.urls')),
 ]

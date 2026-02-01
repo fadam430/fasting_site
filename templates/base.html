@@ -20,17 +20,17 @@
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'fasting_list' %}">Fasting Plans</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'fasting_list' %}" data-active-for-children="true">Fasting Plans</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
           </ul>
 
           <ul class="navbar-nav mb-2 mb-md-0">
             {% if request.user.is_authenticated %}
               <li class="nav-item me-2"><a class="nav-link" href="#">{{ request.user.username }}</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
             {% else %}
-              <li class="nav-item me-2"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+              <li class="nav-item me-2"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
             {% endif %}
           </ul>
         </div>
