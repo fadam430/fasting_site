@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}About - Fast | ing{% endblock %}
+
+{% block content %}
+<section class="about-section row align-items-start" style="gap:1.5rem;">
+  <div class="col-12 col-md-4">
+    {% with about.first as item %}
+      <h2 class="h2">{{ item.title|default:"About this site" }}</h2>
+    {% endwith %}
+  </div>
+  <div class="col-12 col-md-8">
+    {% with about.first as item %}
+      {% if item %}
+        <div class="about-content">{{ item.content|linebreaks }}</div>
+      {% else %}
+        <p>This site explores fasting plans and tips. Content coming soon — placeholder text to be replaced by real copy.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+      {% endif %}
+    {% endwith %}
+  </div>
+</section>
+{% endblock %}

@@ -21,6 +21,7 @@ from fastblog import views as fastblog_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', fastblog_views.home, name='home'),
+    path('home/', fastblog_views.home, name='home'),
+    path('about/', include('about.urls')),
     path('fasting/', include('fastblog.urls')),
 ]
