@@ -1,10 +1,6 @@
-# Test Documentation (QA)
 
-**Purpose:** Single-source QA reference that consolidates automated tests, manual acceptance testing (user stories), validation checks, and test run/CI guidance.
 
-**Audience:** QA / Test Engineers, Developers, and Release Managers
 
----
 
 ## 1) Executive summary ✅
 
@@ -80,42 +76,6 @@ Below are four extensive, step-by-step manual test cases derived from the user-s
 **Edge cases:**
 - Try to register with an already used email and assert the form shows an error.
 - Attempt registration with weak passwords and confirm validation messages.
-
-**Result (to fill):** PASS / FAIL — Notes: __
-
----
-
-### Test B — User Story: Password reset flow (in development with console email backend)
-
-**Summary / purpose:** Ensure password-reset request, token delivery via console, and password change flow works end-to-end.
-
-**Acceptance criteria:** A user can request a password reset, receive a token via the configured email backend (console for dev), set a new password, and login with the new password.
-
-**Preconditions:**
-- A known user exists (test.user+qa@example.com) with a valid password.
-- Dev server logs console email output to terminal (or captured logs).
-
-**Test data:**
-- Email: test.user+qa@example.com
-- New password: NewSecur3P@ss
-
-**Steps:**
-1. Visit `/accounts/password/reset/` and submit the registered email address.
-2. Confirm the response indicates a reset email has been sent.
-3. In the server console, locate the reset URL (the `password/reset/` email body printed to console) and copy the link (tokenized URL).
-4. Visit the reset link in the browser.
-5. Enter and confirm the new password and submit the form.
-6. After success redirect, attempt to login with the new password.
-7. Verify login succeeds and the session is authenticated.
-
-**Expected results:**
-- A tokenized reset link appears in the console output.
-- The reset page accepts a new password and completes password change.
-- The user can login using the new password.
-
-**Edge cases / checks:**
-- Attempt to reuse an expired/used token and confirm the expected error.
-- Submit a non-registered email and confirm the form handles it without user enumeration (same generic message shown).
 
 **Result (to fill):** PASS / FAIL — Notes: __
 
@@ -275,10 +235,6 @@ python manage.py test fastblog --verbosity=2
 - Add GitHub Actions workflow to run Django tests on push/PR (migrate -> test).
 - Add Playwright (recommended) for cross-browser automation: create 2–4 smoke tests (home load, login, signup, add-review redirect) and run them on Chromium, WebKit, and Firefox in CI.
 
-If you want, I can:
-- Add `.github/workflows/tests.yml` to run Django tests, and/or
-- Add Playwright setup + sample tests and a GitHub Actions job to run them.
-
 ---
 
 ## 9) Acceptance criteria (QA)
@@ -296,4 +252,4 @@ If you want, I can:
 3. **Implement Playwright tests** + CI job for cross-browser checks. ✅
 4. **Fix headings** in `templates/fastblog/home.html` and re-run the W3C validator. ✅
 
-Tell me which you'd like me to do (choose any combination). I can implement the change and open a short PR for review.
+
