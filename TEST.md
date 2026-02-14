@@ -1,7 +1,5 @@
 
 
-
-
 ## 1) Executive summary ✅
 
 - Latest automated run: **2026-02-01** (local run)
@@ -24,19 +22,9 @@
 
 ---
 
-## 3) User-story acceptance summary (manual tests)
+## 3) User-story manual tests — detailed (4 key scenarios)
 
-- Registration & Account flows: **Pass** — registration, login, password-reset flows validated. (See `TESTINGcrip.md` details.)
-- Profile & Premium flows: **Pass** — profile access, premium upgrade prompts, and Stripe checkout flow behavior tested.
-- Game/Battle/Codex/Leaderboard: **Pass** — creation, battle mechanics, leaderboard entry, and codex CRUD flows validated manually.
-
-> Note: `TESTINGcrip.md` contains exhaustive, per-user-story walkthroughs and outcomes (many marked **Pass**). I integrated key acceptance results above; for full transcripts see `TESTINGcrip.md`.
-
----
-
-## 3.a) User-story manual tests — detailed (4 key scenarios)
-
-Below are four extensive, step-by-step manual test cases derived from the user-story acceptance test set in. Each is written so a QA engineer can follow it end-to-end, record the result, and capture evidence.
+Below are four extensive, step-by-step manual test cases derived from the user-story acceptance test set in. Can follow it end-to-end, record the result, and capture evidence.
 
 ### Test A — User Story: Register → Login (Account lifecycle)
 
@@ -77,7 +65,7 @@ Below are four extensive, step-by-step manual test cases derived from the user-s
 - Try to register with an already used email and assert the form shows an error.
 - Attempt registration with weak passwords and confirm validation messages.
 
-**Result (to fill):** PASS / FAIL — Notes: __
+
 
 ---
 
@@ -92,9 +80,9 @@ Below are four extensive, step-by-step manual test cases derived from the user-s
 - Test user is registered and can log in.
 
 **Test data:**
-- Title: QA Review Title
+- Title: Review Title
 - Rating: 4
-- Body: "This is an automated QA review entry."
+- Body: "This is an automated review entry."
 
 **Steps:**
 1. As an anonymous user, attempt to POST to `/fasting/review/add/<plan_id>/` (or the project's review-add URL) with review data.
@@ -113,7 +101,7 @@ Below are four extensive, step-by-step manual test cases derived from the user-s
 - Submit with invalid data (missing body/rating) and confirm validation errors on the form.
 - Submit a review with excessively long content and confirm either truncation or server-side validation prevents DB errors.
 
-**Result (to fill):** PASS / FAIL — Notes: __
+
 
 ---
 
@@ -150,13 +138,8 @@ Below are four extensive, step-by-step manual test cases derived from the user-s
 - Long weekday text should wrap without overflow; extremely long comments should not break layout.
 - Missing weekday content should show a friendly placeholder or be absent without throwing errors.
 
-**Result (to fill):** PASS / FAIL — Notes: __
-
 ---
 
-If these tests look good, I can:
-- Scaffold a `manual-test-results.md` prefilled with these four scenarios and `To be verified` rows for the recommended resolutions/browsers matrix, or
-- Run the steps locally for one scenario and pre-fill the results as an example. Tell me which you prefer and I'll proceed.
 
 ## 4) Manual testing (responsive & cross-browser) 🧭
 
@@ -175,25 +158,21 @@ If these tests look good, I can:
 | 360 × 800 | To be verified | To be verified | To be verified | To be verified | Small mobile |
 
 **Manual checklist (high-value items):**
-- Home page renders (hero & cards), no overflow/overlap.
+- Home page renders, no overflow/overlap.
 - Navbar: links work, single active link rule, hamburger menu functioning.
-- Auth flows: login, signup, password reset operate and show expected messages.
+- Auth flows: login, signup operate and show expected messages.
 - Review/add: access restriction for anonymous, submission for logged-in users.
 - Accordion behavior: expand/collapse works; `role="region"` present.
 - Headings: single H1 page-level; card headings H2/H3.
 - Forms: keyboard accessible; focus visible; touch inputs work.
 
-**Record keeping:**
-- Capture a screenshot per test (resolution+browser). Add a one-line note for failures.
-- Option: I can scaffold `manual-test-results.md` (table + screenshot links) or a CSV to collect results. Say "scaffold" and I'll add it.
 
 ---
 
 ## 5) Error handling & interface tests ⚠️
 
-- 404/500 pages: ensure custom `404.html` and `500.html` are shown appropriately.
+- 404 pages: ensure custom `404.html` shown appropriately.
 - External links open in new tab where expected (e.g., GitHub link in How To).
-- Visual regression: scan for broken images, CTA overlap, or text clipping.
 - Focus & keyboard navigation: verify important elements are reachable and actionable by keyboard.
 
 ---
@@ -208,25 +187,27 @@ If these tests look good, I can:
 
 ---
 
-## 7) How to run (minimal snippets)
+## 7) Validations
 
-- Run all fastblog tests:
+    home page [home](/documents/validations/home%20page%20validation1.PNG)
+    home page after [home](/documents/validations/home%20page%20validation%202.PNG)
+    fasting plan page [fasting plan](/documents/validations/fasting%20page%20validation%201.PNG)
+    fasting plan page after [fasting plan](/documents/validations/fasting_page_validation2.PNG)
+    About page [about](/documents/validations/about%20page%20validation.PNG)
+    Login page [login](/documents/validations/login%20page%20validation.PNG)
+    register page [register](/documents/validations/sign_up_validation.PNG)
 
-```bash
-python manage.py test fastblog
-```
+    CSS [CSS](/documents/validations/CSS%20validation.PNG)
 
-- Run a single test:
+### Lighthouse
 
-```bash
-python manage.py test fastblog.tests.AuthPagesTests.test_login_page_loads
-```
+    home [home](/documents/validations/lighthouse_home.PNG)
+    home mobil [home](/documents/validations/lighthouse_home_mobile.PNG)
+    fasting plan page [fasting plan](/documents/validations/lighthuse_fastingpage.PNG)
+    fasting plan page mobil  [fasting plan](/documents/validations/lighthouse_fastingpage_mobile.PNG)
+    
 
-- To run with detailed output:
 
-```bash
-python manage.py test fastblog --verbosity=2
-```
 
 ---
 
@@ -240,16 +221,15 @@ python manage.py test fastblog --verbosity=2
 ## 9) Acceptance criteria (QA)
 
 - Automated: 100% of `fastblog` unit tests pass on CI.
-- Manual: All user-story acceptance tests show **Pass** in `manual-test-results.md` for supported browsers/resolutions.
+- Manual: All user-story acceptance tests show **Pass**  for supported browsers/resolutions.
 - Accessibility: No `aria-labelledby` errors and heading-order warnings resolved before public release.
 
 ---
 
 ## 10) Next actions (pick one)
 
-1. **Scaffold manual results** (`manual-test-results.md`) and pre-fill with `To be verified` rows for your QA team. ✅
-2. **Create CI workflow** for Django tests and add status badge to `README.md`. ✅
-3. **Implement Playwright tests** + CI job for cross-browser checks. ✅
-4. **Fix headings** in `templates/fastblog/home.html` and re-run the W3C validator. ✅
+1. **Create CI workflow** for Django tests and add status badge to `README.md`. ✅
+2. **Implement Playwright tests** + CI job for cross-browser checks. ✅
+3. **Fix headings** in `templates/fastblog/home.html` and re-run the W3C validator. ✅
 
 
